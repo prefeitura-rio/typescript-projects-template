@@ -28,11 +28,11 @@ to the others:
 | Linting | oxlint |
 | Structural linting | ast-grep (org-wide rules via `quality-gate`) |
 | Tests | Vitest 3 |
-| CI | GitHub Actions → `prefeitura-rio/actions/quality-gate@latest` |
+| CI | GitHub Actions → `prefeitura-rio/actions/quality-gate@master` |
 
 ## CI pipeline structure
 
-Every template ships an identical `.github/workflows/ci.yaml` with five jobs:
+Every template ships an identical `.github/workflows/quality-gate.yaml` with five jobs:
 
 ```
 format ──┐

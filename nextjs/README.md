@@ -38,7 +38,7 @@ A minimal, production-ready template for Next.js frontend projects.
 ├── public/                    # Static assets served by Next.js
 └── .github/
     └── workflows/
-        └── ci.yaml            # CI/CD pipeline
+        └── quality-gate.yaml  # Quality gate CI pipeline
 ```
 
 ### Architecture layers
