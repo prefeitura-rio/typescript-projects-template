@@ -13,13 +13,8 @@
     "test:coverage": "vitest run --coverage"
   },
 
-  // files: only the dist/ directory is included when publishing to npm.
-  // Everything else (src, tests, config) stays out of the published package.
   "files": ["dist"],
 
-  // Dual-format exports: CJS for require(), ESM for import.
-  // The "exports" field is the modern standard; bundlers and Node.js 12+
-  // use it to resolve the right format automatically.
   "exports": {
     ".": {
       "import": {
@@ -33,7 +28,6 @@
     }
   },
 
-  // Legacy fields for tools that do not yet read "exports".
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
