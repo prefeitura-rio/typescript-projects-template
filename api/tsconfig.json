@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    // Compile to modern JS; Node.js 24 supports ES2022 natively.
+    "target": "ES2022",
+    "lib": ["ES2022"],
+
+    // Strict checks — the full suite.
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    // noEmit: true makes `tsc --noEmit` (the typecheck script) the authority.
+    // tsup overrides this internally when building.
+    "noEmit": true,
+
+    // bundler resolution works with tsup and avoids the .js extension
+    // requirement of NodeNext while still supporting path aliases.
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    // Each file is treated as an isolated module — required for tsup/esbuild.
+    "isolatedModules": true,
+
+    // Speed up repeated tsc runs by caching the last compilation.
+    "incremental": true,
+
+    // Short import alias: @/http/router → src/http/router
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

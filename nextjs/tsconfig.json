@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    // Compilation target — ES2017 is what Next.js recommends as baseline.
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    // Skip type-checking of declaration files from node_modules.
+    // Required for Next.js and most third-party libraries.
+    "skipLibCheck": true,
+
+    // ── Strictness ──────────────────────────────────────────────────────────
+    // strict: true enables a set of flags: strictNullChecks, noImplicitAny,
+    // strictFunctionTypes, strictPropertyInitialization, and more.
+    "strict": true,
+    // Treats array index accesses as potentially undefined.
+    // e.g. const x = arr[0] gives type T | undefined, not just T.
+    "noUncheckedIndexedAccess": true,
+    // Requires explicit 'override' keyword on overriding class members.
+    "noImplicitOverride": true,
+
+    // ── Module system ────────────────────────────────────────────────────────
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    // 'bundler' resolution matches how Next.js and Vite resolve imports.
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    // Required for tools that process one file at a time (e.g. esbuild, SWC).
+    "isolatedModules": true,
+    // 'preserve' tells tsc to leave JSX as-is for the bundler (Next.js/SWC).
+    "jsx": "preserve",
+
+    // ── Performance ──────────────────────────────────────────────────────────
+    // Saves the compilation state between runs; speeds up tsc --noEmit in CI.
+    "incremental": true,
+
+    // ── Next.js plugin ───────────────────────────────────────────────────────
+    // Enables type-safety for Next.js-specific APIs (e.g. generateStaticParams).
+    "plugins": [{ "name": "next" }],
+
+    // ── Path aliases ─────────────────────────────────────────────────────────
+    // Allows '@/components/...' instead of '../../components/...'.
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
