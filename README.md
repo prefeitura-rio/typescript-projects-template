@@ -24,7 +24,7 @@ to the others:
 | Package manager | pnpm 10 |
 | Dev environment | devenv (Nix-based, reproducible) |
 | Git hooks | `ripsecrets` + `no-commit-to-branch` |
-| Formatting | Prettier 3 |
+| Formatting | oxfmt |
 | Linting | oxlint |
 | Structural linting | ast-grep (org-wide rules via `quality-gate`) |
 | Tests | Vitest 3 |

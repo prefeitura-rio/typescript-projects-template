@@ -5,16 +5,16 @@ Fastify 5, TypeScript, and Vitest.
 
 ## Stack
 
-| Tool | Purpose |
-|---|---|
-| **Fastify 5** | HTTP framework — fast, schema-driven, TypeScript-first |
-| **tsup** | Build: compiles TypeScript → CJS (via esbuild) |
-| **tsx** | Development: runs TypeScript directly, with file watching |
-| **Vitest** | Test runner — uses Fastify's `inject()`, no real port needed |
-| **oxlint** | Linting |
-| **Prettier** | Formatting |
-| **ast-grep** | Structural linting (org-wide rules) |
-| **devenv** | Reproducible development environment (Nix-based) |
+| Tool          | Purpose                                                      |
+| ------------- | ------------------------------------------------------------ |
+| **Fastify 5** | HTTP framework — fast, schema-driven, TypeScript-first       |
+| **tsup**      | Build: compiles TypeScript → CJS (via esbuild)               |
+| **tsx**       | Development: runs TypeScript directly, with file watching    |
+| **Vitest**    | Test runner — uses Fastify's `inject()`, no real port needed |
+| **oxlint**    | Linting                                                      |
+| **oxfmt**     | Formatting                                                   |
+| **ast-grep**  | Structural linting (org-wide rules)                          |
+| **devenv**    | Reproducible development environment (Nix-based)             |
 
 ## Project structure
 
@@ -66,10 +66,10 @@ pnpm test:coverage  # Vitest with coverage report
 
 ## Environment variables
 
-| Variable | Default | Description |
-|---|---|---|
-| `PORT` | `8080` | Port the server listens on |
-| `LOG_LEVEL` | `info` | Pino log level (`trace`, `debug`, `info`, `warn`, `error`) |
+| Variable    | Default | Description                                                |
+| ----------- | ------- | ---------------------------------------------------------- |
+| `PORT`      | `8080`  | Port the server listens on                                 |
+| `LOG_LEVEL` | `info`  | Pino log level (`trace`, `debug`, `info`, `warn`, `error`) |
 
 ## Testing approach
 
@@ -87,24 +87,24 @@ call `createServer()` directly, `inject()` requests, and `app.close()` in
 GitHub Actions runs automatically on every push and pull request to `main`.
 Two workflows ship with this template:
 
-| Workflow | Purpose |
-|---|---|
-| `quality-gate.yaml` | Formatting, linting, structural lint, type check, tests — via `prefeitura-rio/actions/quality-gate` |
-| `sast.yaml` | Security scanning (opengrep, grype/SBOM, checkov, SonarQube) via the org reusable workflow `prefeitura-rio/actions/.github/workflows/sast.yml` |
+| Workflow            | Purpose                                                                                                                                        |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `quality-gate.yaml` | Formatting, linting, structural lint, type check, tests — via `prefeitura-rio/actions/quality-gate`                                            |
+| `sast.yaml`         | Security scanning (opengrep, grype/SBOM, checkov, SonarQube) via the org reusable workflow `prefeitura-rio/actions/.github/workflows/sast.yml` |
 
 ### SAST required secrets
 
 `sast.yaml` needs the following secrets and variables at the repository or
 organization level:
 
-| Name | Type | Purpose |
-|---|---|---|
-| `SONAR_HOST_URL` | Variable | SonarQube server URL |
-| `SONAR_TOKEN` | Secret | SonarQube access token |
-| `DD_TOKEN` | Secret | DefectDojo API token |
-| `TS_TAGS` | Secret | Tailscale tags for the runner |
-| `TS_OAUTH_CLIENT_ID` | Secret | Tailscale OAuth client ID |
-| `TS_OAUTH_SECRET` | Secret | Tailscale OAuth client secret |
+| Name                 | Type     | Purpose                       |
+| -------------------- | -------- | ----------------------------- |
+| `SONAR_HOST_URL`     | Variable | SonarQube server URL          |
+| `SONAR_TOKEN`        | Secret   | SonarQube access token        |
+| `DD_TOKEN`           | Secret   | DefectDojo API token          |
+| `TS_TAGS`            | Secret   | Tailscale tags for the runner |
+| `TS_OAUTH_CLIENT_ID` | Secret   | Tailscale OAuth client ID     |
+| `TS_OAUTH_SECRET`    | Secret   | Tailscale OAuth client secret |
 
 Until these exist, the `sast` job will fail — configure them before enabling
 the workflow.

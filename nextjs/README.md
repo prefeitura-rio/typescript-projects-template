@@ -4,15 +4,15 @@ A minimal, production-ready template for Next.js frontend projects.
 
 ## Stack
 
-| Layer | Tool |
-|---|---|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript 5 (strict mode) |
-| Runtime | Node.js 22 |
-| Package manager | pnpm |
-| Formatting | Prettier |
-| Linting | oxlint |
-| Testing | Vitest + Testing Library |
+| Layer           | Tool                             |
+| --------------- | -------------------------------- |
+| Framework       | Next.js 15 (App Router)          |
+| Language        | TypeScript 5 (strict mode)       |
+| Runtime         | Node.js 22                       |
+| Package manager | pnpm                             |
+| Formatting      | oxfmt                            |
+| Linting         | oxlint                           |
+| Testing         | Vitest + Testing Library         |
 | Dev environment | devenv (Nix-based, reproducible) |
 
 ## Project Structure
@@ -89,21 +89,21 @@ pnpm dev                          # start Next.js dev server
 
 Installed automatically when the environment activates:
 
-| Hook | Behaviour |
-|---|---|
-| `ripsecrets` | Scans for accidentally committed secrets; aborts the commit if found |
-| `no-commit-to-branch` | Blocks direct commits to `main`; use a branch and open a PR |
+| Hook                  | Behaviour                                                            |
+| --------------------- | -------------------------------------------------------------------- |
+| `ripsecrets`          | Scans for accidentally committed secrets; aborts the commit if found |
+| `no-commit-to-branch` | Blocks direct commits to `main`; use a branch and open a PR          |
 
 ## Running Quality Checks Locally
 
 All checks mirror what CI runs. Use `devenv tasks run <name>`:
 
-| Task | What it does |
-|---|---|
-| `devenv tasks run app:format` | Check formatting with Prettier |
-| `devenv tasks run app:lint` | Lint with oxlint |
+| Task                             | What it does                 |
+| -------------------------------- | ---------------------------- |
+| `devenv tasks run app:format`    | Check formatting with oxfmt  |
+| `devenv tasks run app:lint`      | Lint with oxlint             |
 | `devenv tasks run app:typecheck` | Type-check with tsc --noEmit |
-| `devenv tasks run app:test` | Run tests with Vitest |
+| `devenv tasks run app:test`      | Run tests with Vitest        |
 
 To fix formatting automatically:
 
@@ -119,7 +119,7 @@ The pipeline uses the `prefeitura-rio/actions/quality-gate` action:
 ```
 push / PR to main
 │
-├── Format    (Prettier)         ──┐
+├── Format    (oxfmt)            ──┐
 ├── Lint      (oxlint)           ──┤  parallel
 ├── Strlint   (ast-grep)         ──┤
 ├── Typecheck (tsc --noEmit)     ──┘

@@ -5,14 +5,14 @@ package with dual CJS + ESM output, type declarations, and Vitest tests.
 
 ## Stack
 
-| Tool | Purpose |
-|---|---|
-| **tsup** | Build: dual CJS + ESM output + `.d.ts` declarations (via esbuild) |
-| **Vitest** | Test runner |
-| **oxlint** | Linting |
-| **Prettier** | Formatting |
-| **ast-grep** | Structural linting (org-wide rules) |
-| **devenv** | Reproducible development environment (Nix-based) |
+| Tool         | Purpose                                                           |
+| ------------ | ----------------------------------------------------------------- |
+| **tsup**     | Build: dual CJS + ESM output + `.d.ts` declarations (via esbuild) |
+| **Vitest**   | Test runner                                                       |
+| **oxlint**   | Linting                                                           |
+| **oxfmt**    | Formatting                                                        |
+| **ast-grep** | Structural linting (org-wide rules)                               |
+| **devenv**   | Reproducible development environment (Nix-based)                  |
 
 ## Project structure
 
