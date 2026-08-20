@@ -79,6 +79,20 @@ pnpm publish --access public   # for a public scoped package
 pnpm publish                   # for an unscoped or private registry package
 ```
 
+## CI pipeline
+
+Five jobs run on every push and pull request to `main`:
+
+```
+format ──┐
+lint   ──┤
+strlint──┼──> test
+typecheck┘
+```
+
+`format`, `lint`, `strlint`, and `typecheck` run in parallel. `test` runs only
+after all four pass. `typecheck` runs `tsc --noEmit`.
+
 ## Why dual CJS + ESM?
 
 Different consumers use different module systems:

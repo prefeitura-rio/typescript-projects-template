@@ -1,4 +1,4 @@
-# TypeScript Project Template
+# nextjs — Next.js Frontend Template
 
 A minimal, production-ready template for Next.js frontend projects.
 
@@ -8,7 +8,7 @@ A minimal, production-ready template for Next.js frontend projects.
 | --------------- | -------------------------------- |
 | Framework       | Next.js 15 (App Router)          |
 | Language        | TypeScript 5 (strict mode)       |
-| Runtime         | Node.js 22                       |
+| Runtime         | Node.js 24                       |
 | Package manager | pnpm                             |
 | Formatting      | oxfmt                            |
 | Linting         | oxlint                           |
@@ -61,28 +61,32 @@ Test files are co-located next to the file they cover:
 The Node.js toolchain and pnpm are declared in `devenv.nix`. You do not
 install them manually.
 
-### Step 1 — Bootstrap (one time, per machine)
+### Step 1 — Copy the template into a new repository
 
 ```bash
-git clone git@github.com:prefeitura-rio/typescript-projects-template.git
-cd typescript-projects-template
+cp -r typescript-projects-template/nextjs/. my-nextjs-app/
+cd my-nextjs-app
+```
+
+### Step 2 — Bootstrap (one time, per machine)
+
+```bash
 bash scripts/bootstrap.sh
 ```
 
-### Step 2 — Trust the project (one time, per clone)
+### Step 3 — Trust the project (one time, per clone)
 
 ```bash
 devenv allow
 ```
 
-### Step 3 — Work normally
+### Step 4 — Work normally
 
 Entering the project directory activates the environment automatically.
-Node.js 22, pnpm, and all node_modules are ready immediately.
+Node.js 24, pnpm, and all node_modules are ready immediately.
 
 ```bash
-cd typescript-projects-template   # environment activates + pnpm install runs
-pnpm dev                          # start Next.js dev server
+pnpm dev   # start Next.js dev server
 ```
 
 ## Git Hooks
@@ -96,19 +100,17 @@ Installed automatically when the environment activates:
 
 ## Running Quality Checks Locally
 
-All checks mirror what CI runs. Use `devenv tasks run <name>`:
-
-| Task                             | What it does                 |
-| -------------------------------- | ---------------------------- |
-| `devenv tasks run app:format`    | Check formatting with oxfmt  |
-| `devenv tasks run app:lint`      | Lint with oxlint             |
-| `devenv tasks run app:typecheck` | Type-check with tsc --noEmit |
-| `devenv tasks run app:test`      | Run tests with Vitest        |
-
-To fix formatting automatically:
+The `quality-gate` CI action is the authoritative enforcer — every push and
+pull request is validated there. The pnpm scripts below mirror what CI runs and
+are useful for fast local feedback during development:
 
 ```bash
-pnpm format
+pnpm typecheck      # tsc --noEmit
+pnpm test           # Vitest (all tests)
+pnpm test:coverage  # Vitest with coverage report
+pnpm format:check   # oxfmt --check (reports problems)
+pnpm format         # oxfmt (auto-fixes formatting)
+pnpm lint           # oxlint .
 ```
 
 ## CI/CD
@@ -131,8 +133,7 @@ push / PR to main
 
 1. Update `name` in `package.json`
 2. Update `name` in `devenv.nix`
-3. Update the module path in `go.mod` — not applicable here; update page
-   `<title>` and `<meta description>` in `src/app/layout.tsx`
+3. Update the page `<title>` and `<meta description>` in `src/app/layout.tsx`
 4. Replace the `health-status` feature with your own domain components
 5. Add your domain types to `src/domain/`
 6. When adding Docker support, uncomment `output: 'standalone'` in `next.config.ts`
