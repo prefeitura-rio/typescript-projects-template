@@ -61,26 +61,19 @@ Test files are co-located next to the file they cover:
 The Node.js toolchain and pnpm are declared in `devenv.nix`. You do not
 install them manually.
 
-### Step 1 — Copy the template into a new repository
+### Copy the template into a new repository
 
 ```bash
 cp -r typescript-projects-template/frontend/. my-nextjs-app/
 cd my-nextjs-app
-```
-
-### Step 2 — Bootstrap (one time, per machine)
-
-```bash
 bash scripts/bootstrap.sh
 ```
 
-### Step 3 — Trust the project (one time, per clone)
+The script prompts for the project name, updates `package.json` and
+`devenv.nix`, installs the development environment, and trusts the project
+automatically. Open a **new terminal** after the script finishes.
 
-```bash
-devenv allow
-```
-
-### Step 4 — Work normally
+### Work normally
 
 Entering the project directory activates the environment automatically.
 Node.js 24, pnpm, and all node_modules are ready immediately.
@@ -131,9 +124,8 @@ push / PR to main
 
 ## Customising This Template
 
-1. Update `name` in `package.json`
-2. Update `name` in `devenv.nix`
-3. Update the page `<title>` and `<meta description>` in `src/app/layout.tsx`
-4. Replace the `health-status` feature with your own domain components
-5. Add your domain types to `src/domain/`
-6. Add `output: 'standalone'` to `next.config.ts` when adding Docker support
+1. The bootstrap script initializes `name` in `package.json` and `devenv.nix`.
+2. Update the page `<title>` and `<meta description>` in `src/app/layout.tsx`.
+3. Replace the `health-status` feature with your own domain components.
+4. Add your domain types to `src/domain/`.
+5. Add `output: 'standalone'` to `next.config.ts` when adding Docker support.

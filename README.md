@@ -48,27 +48,24 @@ run on code that has already passed static analysis.
 The `backend/` template additionally ships `.github/workflows/sast.yaml` — security
 scanning (opengrep, grype/SBOM, checkov, SonarQube) via the org reusable
 workflow `prefeitura-rio/actions/.github/workflows/sast.yml`. See
-[api/README.md](./api/README.md) for the required secrets and variables.
+[backend/README.md](./backend/README.md) for the required secrets and variables.
 
 ## How to use a template
 
-1. Copy the template subdirectory into a new, empty repository:
-   ```bash
-   cp -r typescript-projects-template/backend/. my-new-backend/
-   cd my-new-api
-   ```
-2. Update `name` in `package.json`.
-3. Update `name` in `devenv.nix`.
-4. Bootstrap the dev environment:
-   ```bash
-   bash scripts/bootstrap.sh
-   # Open a new terminal, then:
-   devenv allow
-   ```
-5. Verify everything works:
-   ```bash
-   pnpm typecheck && pnpm test
-   ```
+Copy the desired template subdirectory into a new, empty repository and run its
+bootstrap script. For example:
+
+```bash
+cp -r typescript-projects-template/backend/. my-new-backend/
+cd my-new-backend
+bash scripts/bootstrap.sh
+```
+
+The script prompts for the project name, performs the package metadata
+substitutions, installs the development environment, and trusts the project
+automatically. Open a **new terminal** after the script finishes.
+
+Follow the template-specific README for verification commands.
 
 ## Template-specific docs
 
