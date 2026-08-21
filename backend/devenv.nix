@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  name = "library";
+  name = "api";
 
   languages.javascript = {
     enable = true;

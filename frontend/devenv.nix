@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  name = "library";
+  name = "frontend";
 
   languages.javascript = {
     enable = true;

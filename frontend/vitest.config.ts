@@ -1,11 +1,13 @@
 import path from 'path'
+import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
-  test: {
-    environment: 'node',
-    globals: true,
+  plugins: [react()],
 
+  test: {
+    environment: 'jsdom',
+    globals: true,
     setupFiles: ['./tests/setup.ts'],
 
     coverage: {
@@ -13,6 +15,7 @@ export default defineConfig({
       reporter: ['text', 'lcov'],
     },
   },
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

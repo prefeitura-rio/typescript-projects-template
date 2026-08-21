@@ -8,8 +8,8 @@ the relevant subdirectory into a new repository root and start building.
 
 | Template | Description | Framework |
 |---|---|---|
-| [`nextjs/`](./nextjs/) | Frontend web application | Next.js 15, React 19 |
-| [`api/`](./api/) | HTTP REST API | Fastify 5, Node.js 24 |
+| [`frontend/`](./frontend/) | Frontend web application | Next.js 15, React 19 |
+| [`backend/`](./backend/) | HTTP REST API | Hono, Node.js 24 |
 | [`library/`](./library/) | Publishable npm package | tsup (dual CJS + ESM) |
 
 ## What every template shares
@@ -45,7 +45,7 @@ The four checks run in parallel. `test` runs only after all four pass. This
 keeps feedback fast: a formatting error does not block linting, and tests only
 run on code that has already passed static analysis.
 
-The `api/` template additionally ships `.github/workflows/sast.yaml` — security
+The `backend/` template additionally ships `.github/workflows/sast.yaml` — security
 scanning (opengrep, grype/SBOM, checkov, SonarQube) via the org reusable
 workflow `prefeitura-rio/actions/.github/workflows/sast.yml`. See
 [api/README.md](./api/README.md) for the required secrets and variables.
@@ -54,7 +54,7 @@ workflow `prefeitura-rio/actions/.github/workflows/sast.yml`. See
 
 1. Copy the template subdirectory into a new, empty repository:
    ```bash
-   cp -r typescript-projects-template/api/. my-new-api/
+   cp -r typescript-projects-template/backend/. my-new-backend/
    cd my-new-api
    ```
 2. Update `name` in `package.json`.
@@ -75,6 +75,6 @@ workflow `prefeitura-rio/actions/.github/workflows/sast.yml`. See
 Each template contains its own `README.md` with detailed usage instructions,
 stack choices, and testing guidance:
 
-- [nextjs/README.md](./nextjs/README.md)
-- [api/README.md](./api/README.md)
+- [frontend/README.md](./frontend/README.md)
+- [backend/README.md](./backend/README.md)
 - [library/README.md](./library/README.md)
