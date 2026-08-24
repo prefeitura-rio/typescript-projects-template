@@ -5,14 +5,14 @@ package with dual CJS + ESM output, type declarations, and Vitest tests.
 
 ## Stack
 
-| Tool         | Purpose                                                           |
-| ------------ | ----------------------------------------------------------------- |
-| **tsup**     | Build: dual CJS + ESM output + `.d.ts` declarations (via esbuild) |
-| **Vitest**   | Test runner                                                       |
-| **oxlint**   | Linting                                                           |
-| **oxfmt**    | Formatting                                                        |
-| **ast-grep** | Structural linting (org-wide rules)                               |
-| **devenv**   | Reproducible development environment (Nix-based)                  |
+| Tool          | Purpose                                                                                             |
+| ------------- | --------------------------------------------------------------------------------------------------- |
+| **tsup**      | Build: dual CJS + ESM output + `.d.ts` declarations (via esbuild)                                   |
+| **Vitest**    | Test runner                                                                                         |
+| **oxlint**    | Linting                                                                                             |
+| **oxfmt**     | Formatting                                                                                          |
+| **ast-grep**  | Structural linting (org-wide rules)                                                                 |
+| **devenv**    | Reproducible development environment (Nix-based)                                                    |
 | **git hooks** | `ripsecrets` + `no-commit-to-branch` + format/lint/strlint (pre-commit) + typecheck/test (pre-push) |
 
 ## Project structure
@@ -58,13 +58,13 @@ package names such as:
 ### 3. Run quality checks
 
 ```bash
-devenv run app:format           # oxfmt (auto-fix)
-devenv run app:format:check     # oxfmt --check
-devenv run app:lint             # oxlint --fix
-devenv run app:lint:check       # oxlint
-devenv run app:strlint          # ast-grep scan
-devenv run app:typecheck        # tsc --noEmit
-devenv run app:test             # Vitest (all tests)
+devenv tasks run app:format           # oxfmt (auto-fix)
+devenv tasks run app:format:check     # oxfmt --check
+devenv tasks run app:lint             # oxlint --fix
+devenv tasks run app:lint:check       # oxlint
+devenv tasks run app:strlint           # ast-grep scan
+devenv tasks run app:typecheck         # tsc --noEmit
+devenv tasks run app:test              # Vitest (all tests)
 pnpm test:coverage              # Vitest with coverage report (no devenv task)
 ```
 
