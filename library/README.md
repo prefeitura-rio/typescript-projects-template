@@ -13,6 +13,7 @@ package with dual CJS + ESM output, type declarations, and Vitest tests.
 | **oxfmt**    | Formatting                                                        |
 | **ast-grep** | Structural linting (org-wide rules)                               |
 | **devenv**   | Reproducible development environment (Nix-based)                  |
+| **git hooks** | `ripsecrets` + `no-commit-to-branch` + format/lint/strlint (pre-commit) + typecheck/test (pre-push) |
 
 ## Project structure
 
@@ -57,9 +58,14 @@ package names such as:
 ### 3. Run quality checks
 
 ```bash
-pnpm typecheck      # tsc --noEmit
-pnpm test           # Vitest (all tests)
-pnpm test:coverage  # Vitest with coverage report
+devenv run app:format           # oxfmt (auto-fix)
+devenv run app:format:check     # oxfmt --check
+devenv run app:lint             # oxlint --fix
+devenv run app:lint:check       # oxlint
+devenv run app:strlint          # ast-grep scan
+devenv run app:typecheck        # tsc --noEmit
+devenv run app:test             # Vitest (all tests)
+pnpm test:coverage              # Vitest with coverage report (no devenv task)
 ```
 
 ### 4. Build

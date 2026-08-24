@@ -16,6 +16,7 @@ Hono, TypeScript, and Vitest.
 | **oxfmt**             | Formatting                                                 |
 | **ast-grep**          | Structural linting (org-wide rules)                        |
 | **devenv**            | Reproducible development environment (Nix-based)           |
+| **git hooks**         | `ripsecrets` + `no-commit-to-branch` + format/lint/strlint (pre-commit) + typecheck/test (pre-push) |
 
 ## Project structure
 
@@ -64,9 +65,14 @@ pnpm dev
 ### Run quality checks
 
 ```bash
-pnpm typecheck      # tsc --noEmit
-pnpm test           # Vitest (all tests)
-pnpm test:coverage  # Vitest with coverage report
+devenv run app:format           # oxfmt (auto-fix)
+devenv run app:format:check     # oxfmt --check
+devenv run app:lint             # oxlint --fix
+devenv run app:lint:check       # oxlint
+devenv run app:strlint          # ast-grep scan
+devenv run app:typecheck        # tsc --noEmit
+devenv run app:test             # Vitest (all tests)
+pnpm test:coverage              # Vitest with coverage report (no devenv task)
 ```
 
 ## Environment variables
@@ -84,6 +90,20 @@ developer machine and in CI.
 The `createServer()` factory (in `src/app/server.ts`) is the key: it
 configures and returns a Hono instance without starting a listener. Tests call
 `createServer()` directly and use standard `Request` and `Response` objects.
+
+## Git Hooks
+
+devenv automatically installs hooks when the environment is activated:
+
+| Hook | Stage | Behaviour |
+|---|---|---|
+| `ripsecrets` | pre-commit | Scans for accidentally committed secrets |
+| `no-commit-to-branch` | pre-commit | Blocks direct commits to `master` and `main` |
+| `app-format` | pre-commit | Checks formatting (oxfmt); auto-fixes and re-stages, blocks commit |
+| `app-lint` | pre-commit | Checks linting (oxlint); auto-fixes and re-stages, blocks commit |
+| `app-strlint` | pre-commit | Structural lint (ast-grep); check-only, blocks commit |
+| `app-typecheck` | pre-push | Runs `tsc --noEmit` |
+| `app-test` | pre-push | Runs Vitest |
 
 ## CI/CD
 
