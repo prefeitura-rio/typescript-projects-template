@@ -23,7 +23,7 @@ to the others:
 | Runtime | Node.js 24 LTS |
 | Package manager | pnpm 10 |
 | Dev environment | devenv (Nix-based, reproducible) |
-| Git hooks | `ripsecrets` + `no-commit-to-branch` |
+| Git hooks | `ripsecrets` + `no-commit-to-branch` + format/lint/strlint (pre-commit) + typecheck/test (pre-push) |
 | Formatting | oxfmt |
 | Linting | oxlint |
 | Structural linting | ast-grep (org-wide rules via `quality-gate`) |

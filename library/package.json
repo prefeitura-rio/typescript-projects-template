@@ -6,6 +6,10 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint --config .oxlintrc.json .",
+    "lint:fix": "oxlint --config .oxlintrc.json --fix .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
