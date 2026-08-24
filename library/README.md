@@ -33,17 +33,22 @@ dist/            # Build output (git-ignored; published to npm)
 
 ## Getting started
 
-### 1. Bootstrap the dev environment (first time only)
+Copy this directory into a new, empty repository and run the bootstrap script:
 
 ```bash
+cp -r typescript-projects-template/library/. my-library/
+cd my-library
 bash scripts/bootstrap.sh
-# Then open a new terminal and run:
-devenv allow
 ```
 
-### 2. Rename the package
+The script prompts for the project name, updates `package.json` and `devenv.nix`,
+installs the development environment, and trusts the project automatically. Open
+a **new terminal** after the script finishes.
 
-Update the `name` field in `package.json`:
+### Rename the package
+
+The `name` field is initialized by the bootstrap script. It supports scoped npm
+package names such as:
 
 ```json
 { "name": "@your-org/your-package-name" }

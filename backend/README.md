@@ -41,15 +41,19 @@ tests/
 
 ## Getting started
 
-### 1. Bootstrap the dev environment (first time only)
+Copy this directory into a new, empty repository and run the bootstrap script:
 
 ```bash
+cp -r typescript-projects-template/backend/. my-new-backend/
+cd my-new-backend
 bash scripts/bootstrap.sh
-# Then open a new terminal and run:
-devenv allow
 ```
 
-### 2. Start the development server
+The script prompts for the project name, updates `package.json` and `devenv.nix`,
+installs the development environment, and trusts the project automatically. Open
+a **new terminal** after the script finishes.
+
+### Start the development server
 
 ```bash
 pnpm dev
@@ -57,7 +61,7 @@ pnpm dev
 # Listening on http://localhost:8080
 ```
 
-### 3. Run quality checks
+### Run quality checks
 
 ```bash
 pnpm typecheck      # tsc --noEmit

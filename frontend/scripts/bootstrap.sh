@@ -15,6 +15,62 @@ note() {
   echo "  [note] $*"
 }
 
+die() {
+  echo "Error: $*" >&2
+  exit 1
+}
+
+require_interactive() {
+  if [[ ! -t 0 || ! -t 1 ]]; then
+    die "project initialization requires an interactive terminal"
+  fi
+}
+
+confirm_initialization() {
+  local answer
+  read -r -p "  Apply these changes? [Y/n] " answer
+  if [[ -n "$answer" && ! "$answer" =~ ^[Yy]$ ]]; then
+    die "project initialization cancelled"
+  fi
+}
+
+validate_package_name() {
+  [[ "$1" =~ ^[a-z0-9][a-z0-9._-]*$ || "$1" =~ ^@[a-z0-9][a-z0-9._-]*/[a-z0-9][a-z0-9._-]*$ ]]
+}
+
+initialize_project() {
+  local project_name
+
+  if ! grep -q '"name": "typescript-projects-template"' package.json; then
+    return
+  fi
+
+  require_interactive
+
+  [[ -f package.json && -f devenv.nix ]] || die "template frontend files are missing"
+
+  read -r -p "Project name: " project_name
+  validate_package_name "$project_name" || die "project name must be a valid npm package name"
+  [[ "$project_name" != "typescript-projects-template" ]] || die "project name cannot be the template placeholder"
+
+  echo ""
+  echo "Initializing project from template..."
+  echo ""
+  echo "  Project name: $project_name"
+  echo ""
+  echo "  Changes to apply:"
+  echo "    update  package.json  (name)"
+  echo "    update  devenv.nix    (name)"
+
+  confirm_initialization
+
+  sed -i "s|\"name\": \"typescript-projects-template\"|\"name\": \"$project_name\"|" package.json
+  sed -i "s|name = \"frontend\"|name = \"$project_name\"|" devenv.nix
+  ok "Project initialized"
+}
+
+initialize_project
+
 step "Checking for Nix..."
 
 if command -v nix &>/dev/null; then
@@ -86,19 +142,14 @@ elif [ -z "$HOOK_SNIPPET" ] && [ "$SHELL_NAME" != "fish" ] && [ "$SHELL_NAME" !=
   note "Add the devenv hook manually: https://devenv.sh/auto-activation/"
 fi
 
+step "Trusting devenv project..."
+devenv allow
+ok "devenv project trusted"
+
 echo ""
 echo "============================================================"
 echo " Bootstrap complete!"
 echo "============================================================"
 echo ""
-echo " Next steps:"
-echo ""
-echo "   1. Open a new terminal (so the shell hook takes effect)"
-echo "   2. Navigate to this repository"
-echo "   3. Run: devenv allow"
-echo ""
-echo " After step 3, the environment activates automatically"
-echo " every time you cd into this directory."
- echo " Node.js 24 and pnpm will be available, and pnpm install"
-echo " will run automatically to set up node_modules."
+echo " Open a new terminal. The environment activates automatically when you navigate to this directory."
 echo ""
