@@ -25,6 +25,7 @@ src/
 tests/
   setup.ts       # Global Vitest setup (runs before each test file)
   example.test.ts
+  build.test.ts  # Builds with tsup and checks the files package.json points to
 dist/            # Build output (git-ignored; published to npm)
   index.js       # ESM output
   index.cjs      # CJS output
