@@ -2,6 +2,7 @@
   "name": "my-library",
   "version": "0.1.0",
   "description": "",
+  "type": "module",
   "packageManager": "pnpm@10.11.0",
   "scripts": {
     "build": "tsup",
