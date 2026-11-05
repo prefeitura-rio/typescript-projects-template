@@ -41,7 +41,7 @@ validate_package_name() {
 initialize_project() {
   local project_name
 
-  if ! grep -q '"name": "typescript-projects-template"' package.json; then
+  if ! grep -q '"name": "frontend"' package.json; then
     return
   fi
 
@@ -51,7 +51,7 @@ initialize_project() {
 
   read -r -p "Project name: " project_name
   validate_package_name "$project_name" || die "project name must be a valid npm package name"
-  [[ "$project_name" != "typescript-projects-template" ]] || die "project name cannot be the template placeholder"
+  [[ "$project_name" != "frontend" ]] || die "project name cannot be the template placeholder"
 
   echo ""
   echo "Initializing project from template..."
@@ -64,7 +64,7 @@ initialize_project() {
 
   confirm_initialization
 
-  sed -i "s|\"name\": \"typescript-projects-template\"|\"name\": \"$project_name\"|" package.json
+  sed -i "s|\"name\": \"frontend\"|\"name\": \"$project_name\"|" package.json
   sed -i "s|name = \"frontend\"|name = \"$project_name\"|" devenv.nix
   ok "Project initialized"
 }
