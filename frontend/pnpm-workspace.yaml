@@ -8,3 +8,9 @@ trustPolicy: no-downgrade
 trustPolicyExclude:
   - semver@6.3.1
   - undici-types@6.21.0
+# Security floors for transitive dependencies that next pins or allows at
+# vulnerable versions (postcss 8.4.31, sharp 0.34.x and their source-map-js).
+overrides:
+  postcss: ^8.5.23
+  sharp: ^0.35.5
+  source-map-js: ^1.2.2
