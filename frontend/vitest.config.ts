@@ -12,6 +12,8 @@ export default defineConfig({
 
     coverage: {
       provider: 'v8',
+      // Vitest 4 only reports files loaded by tests unless include is set.
+      include: ['src/**/*.{ts,tsx}'],
       reporter: ['text', 'lcov'],
     },
   },
