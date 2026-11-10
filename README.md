@@ -27,7 +27,7 @@ to the others:
 | Formatting | oxfmt |
 | Linting | oxlint |
 | Structural linting | ast-grep (org-wide rules via `quality-gate`) |
-| Tests | Vitest 3 |
+| Tests | Vitest 4 |
 | CI | GitHub Actions → `prefeitura-rio/actions/quality-gate@master` |
 
 ## CI pipeline structure

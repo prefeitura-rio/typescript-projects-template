@@ -36,11 +36,11 @@
   "types": "./dist/index.d.ts",
   "devDependencies": {
     "@types/node": "22.15.29",
-    "@vitest/coverage-v8": "3.2.4",
-    "oxfmt": "0.62.0",
+    "@vitest/coverage-v8": "4.1.12",
+    "oxfmt": "0.75.0",
     "oxlint": "0.16.7",
     "tsup": "8.5.0",
     "typescript": "5.8.3",
-    "vitest": "3.2.4"
+    "vitest": "4.1.12"
   }
 }
