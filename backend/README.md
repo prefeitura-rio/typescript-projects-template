@@ -38,6 +38,9 @@ src/
 tests/
   setup.ts          # Global Vitest setup (runs before each test file)
   health.test.ts    # Integration tests for the /health endpoint
+  build.test.ts     # Builds with tsup and runs the file the start script points to
+dist/               # Build output (git-ignored)
+  index.cjs         # CJS bundle run by `pnpm start`
 ```
 
 ## Getting started
@@ -60,6 +63,13 @@ a **new terminal** after the script finishes.
 pnpm dev
 # Starts the server with hot reload via tsx watch.
 # Listening on http://localhost:8080
+```
+
+### Build and run the production bundle
+
+```bash
+pnpm run build   # tsup → dist/index.cjs
+pnpm start       # node dist/index.cjs
 ```
 
 ### Run quality checks
@@ -90,6 +100,10 @@ developer machine and in CI.
 The `createServer()` factory (in `src/app/server.ts`) is the key: it
 configures and returns a Hono instance without starting a listener. Tests call
 `createServer()` directly and use standard `Request` and `Response` objects.
+
+The exception is `tests/build.test.ts`: it builds with tsup into a temporary
+directory and starts the file the `start` script runs on a free port, so a
+build that no longer matches `pnpm start` fails the tests.
 
 ## Git Hooks
 
